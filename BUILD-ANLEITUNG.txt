@@ -1,0 +1,26 @@
+FUSION CLIENT – WINDOWS-EXE ERSTELLEN
+
+Wichtig:
+Dieses Projekt ist noch nicht als fertige EXE kompiliert oder auf Windows getestet.
+Der Workflow versucht, auf einem GitHub-Windows-Runner eine einzelne selbstständige
+FusionClient.exe zu erstellen.
+
+So startest du den Build:
+1. Entpacke das ZIP.
+2. Lade den Ordnerinhalt in ein neues GitHub-Repository hoch.
+3. Öffne im Repository den Tab "Actions".
+4. Wähle links "Build Fusion Client for Windows".
+5. Klicke auf "Run workflow".
+6. Warte, bis der Lauf erfolgreich abgeschlossen ist.
+7. Öffne den abgeschlossenen Lauf und lade unter "Artifacts"
+   die Datei "FusionClient-Windows-x64" herunter.
+   Das Artifact enthält die FusionClient.exe.
+
+Für eine GitHub-Release:
+Erstelle und pushe einen Tag, der mit v beginnt (z. B. v1.0.0).
+Bei einem erfolgreichen Build wird FusionClient.exe an die Release angehängt.
+
+Hinweis:
+Der Build kann noch Fehler zeigen, falls einzelne Minecraft-Bibliotheks-APIs
+im Projekt angepasst werden müssen. Die EXE ist daher erst nach einem
+erfolgreichen Build und Funktionstest als veröffentlichungsbereit anzusehen.
