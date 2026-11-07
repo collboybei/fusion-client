@@ -2,6 +2,7 @@ using System.IO;
 using System.Windows;
 using CmlLib.Core;
 using CmlLib.Core.Auth;
+using CmlLib.Core.Auth.Microsoft;
 using CmlLib.Core.ProcessBuilder;
 
 namespace FusionClient;
