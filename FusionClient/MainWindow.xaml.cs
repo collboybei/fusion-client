@@ -1,9 +1,8 @@
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using CmlLib.Core;
 using CmlLib.Core.Auth;
-using CmlLib.Core.Downloader;
+using CmlLib.Core.ProcessBuilder;
 
 namespace FusionClient;
 
@@ -31,7 +30,6 @@ public partial class MainWindow : Window
         try
         {
             SetBusy(true, "Microsoft-Anmeldung wird vorbereitet …");
-            // CmlLib's device-code login opens the Microsoft sign-in flow.
             var loginHandler = JELoginHandlerBuilder.BuildDefault();
             _session = await loginHandler.Authenticate();
             AccountLabel.Text = _session.Username;
@@ -68,6 +66,8 @@ public partial class MainWindow : Window
             if (string.IsNullOrWhiteSpace(version))
                 throw new InvalidOperationException("Die ausgewählte Minecraft-Version wurde nicht gefunden.");
 
+            await _launcher.InstallAsync(version);
+
             var launchOption = new MLaunchOption
             {
                 Session = _session,
@@ -75,7 +75,7 @@ public partial class MainWindow : Window
                 MinimumRamMb = 1024
             };
 
-            var process = await _launcher.CreateProcessAsync(version, launchOption);
+            var process = await _launcher.BuildProcessAsync(version, launchOption);
             process.Start();
             StatusLabel.Text = $"Minecraft {version} wurde gestartet.";
         }
